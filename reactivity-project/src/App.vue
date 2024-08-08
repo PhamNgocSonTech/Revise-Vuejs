@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { nextTick, reactive, ref } from 'vue';
 
 const count = ref(0)
 
@@ -11,7 +11,12 @@ const object = reactive({
   array: [1, 2, 3, 4]
 })
 
-const increase = () => count.value++
+const increase = async () => {
+  count.value++
+  console.log(document.getElementById('count').innerText);
+  await nextTick()
+  console.log(document.getElementById('count').innerText);
+}
 
 const change = () => {
   object.user.age++;
@@ -24,7 +29,7 @@ const change = () => {
 
 <template>
   <div>
-    <p>
+    <p id="count">
       Count Number: {{ count }}
     </p>
     <button @click="increase">Increase Number</button>
