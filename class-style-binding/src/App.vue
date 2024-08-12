@@ -17,6 +17,18 @@ const classObjComputed = computed(() => ({
 const changeActive = () => {
   isActive.value = !isActive.value
 }
+
+// Biding Style
+
+const color = ref('yellow')
+const backgroundColor = ref('gray')
+const fontSize = ref(20)
+
+const stylesObj = reactive({
+  marginTop: '10px',
+  border: 'none',
+  borderRadius: '6px'
+})
 </script>
 
 
@@ -25,6 +37,15 @@ const changeActive = () => {
     <button @click="changeActive" class="btn" :class="classObjComputed">{{ isActive ? 'Active' : 'Deactive' }}</button>
     <button @click="changeActive" class="btn" :class="[isActive ? 'active' : '', errorClass]">{{ isActive ? 'Active' :
       'Deactive' }}</button>
+  </div>
+
+  <div>
+    <button :style="[{
+      color,
+      backgroundColor,
+      fontSize: fontSize + 'px',
+      marginTop: marginTop + 'px'
+    }, stylesObj]">Binding Style</button>
   </div>
 </template>
 
