@@ -40,10 +40,8 @@ const submit = () => {
       Xin Chào 1
     </button> <br>
 
-    <pre>
-<code>alert(`Hi ${name}`)
-</code>
-</pre>
+    <p>Event Handling</p>
+    <input @keyup.enter="submit" placeholder="Input your name">
 
   </div>
 </template>
