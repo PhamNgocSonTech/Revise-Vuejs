@@ -2,12 +2,16 @@
 import { ref, reactive } from 'vue';
 const count = ref(0)
 
-const greeting = (event) => {
-  alert(`Xin Chao ${event.type}`)
+const greeting = (value = 'Xin Chào 2') => {
+  alert(`Xin Chao ${value}`)
 }
 
 const sayHi = (name) => {
   alert(`Hi ${name}`)
+}
+
+const submit = () => {
+  alert('Form Submitted')
 }
 
 </script>
@@ -21,6 +25,21 @@ const sayHi = (name) => {
     <button @:click="greeting"> Greeting</button><br>
     <button @:click="sayHi('Ngoc Son')">say hi Son</button> <br>
     <button @:click="sayHi('Kim Ngan')">say hi Ngan</button>
+    <!-- <p>Các event lồng nhau xảy ra hiện tượng lan tràn</p>
+    <button @:click="sayHi('Xin Chào 1')">
+      <button @:click.stop="greeting()">Xin Chào 2</button>
+      Xin Chào 1
+    </button> <br> -->
+
+    <form @submit.prevent="submit" action="">
+      <button type="submit">Submit</button>
+    </form>
+
+    <button @:click.self="sayHi('Xin Chào 1')">
+      <button @:click.self="greeting()">Xin Chào 2</button>
+      Xin Chào 1
+    </button> <br>
+
     <pre>
 <code>alert(`Hi ${name}`)
 </code>
